@@ -1,0 +1,26 @@
+---
+import Logo from './Logo.astro';
+import { site, whatsappUrl } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <Logo light />
+      <p>Mitra pengerjaan pengaspalan untuk akses yang lebih rapi, kuat, dan nyaman digunakan.</p>
+    </div>
+    <div>
+      <p class="footer-label">Navigasi</p>
+      <div class="footer-links"><a href="#layanan">Layanan</a><a href="#tentang">Tentang</a><a href="#proyek">Proyek</a></div>
+    </div>
+    <div>
+      <p class="footer-label">Hubungi Kami</p>
+      <div class="footer-links"><a href={whatsappUrl} target="_blank" rel="noreferrer">{site.phoneDisplay}</a><span>{site.address}</span><span>{site.hours}</span></div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© {year} Indira Jaya Aspal.</span>
+    <span>Template profil perusahaan.</span>
+  </div>
+</footer>

@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Logo from '../components/Logo.astro';
+---
+
+<BaseLayout title="Halaman Tidak Ditemukan | Indira Jaya Aspal" description="Halaman yang Anda cari tidak tersedia.">
+  <main class="not-found">
+    <Logo />
+    <p class="eyebrow">404</p>
+    <h1>Jalannya belum tersedia.</h1>
+    <p>Halaman yang Anda cari mungkin sudah dipindahkan atau tidak ditemukan.</p>
+    <a class="button" href="/">Kembali ke beranda</a>
+  </main>
+</BaseLayout>
+
+<style>
+  .not-found { min-height: 100vh; display: grid; place-content: center; justify-items: start; gap: 1.2rem; width: min(90%, 42rem); margin: auto; }
+  .not-found h1 { margin: 0; font-size: clamp(2.5rem, 8vw, 5rem); }
+  .not-found p { max-width: 34rem; }
+</style>

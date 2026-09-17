@@ -1,0 +1,42 @@
+---
+import Logo from './Logo.astro';
+import { whatsappUrl } from '../data/site';
+---
+
+<header class="site-header" data-header>
+  <div class="container header-inner">
+    <Logo light />
+    <nav class="desktop-nav" aria-label="Navigasi utama">
+      <a href="#beranda">Beranda</a>
+      <a href="#layanan">Layanan</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#proyek">Proyek</a>
+    </nav>
+    <a class="button button--small header-cta" href={whatsappUrl} target="_blank" rel="noreferrer">Konsultasi Gratis</a>
+    <button class="menu-button" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-button>
+      <span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobile-menu" aria-label="Navigasi mobile" data-mobile-menu>
+    <a href="#beranda">Beranda</a>
+    <a href="#layanan">Layanan</a>
+    <a href="#tentang">Tentang</a>
+    <a href="#proyek">Proyek</a>
+    <a href="#kontak">Kontak</a>
+  </nav>
+</header>
+
+<script>
+  const button = document.querySelector('[data-menu-button]');
+  const menu = document.querySelector('[data-mobile-menu]');
+  button?.addEventListener('click', () => {
+    const isOpen = button.getAttribute('aria-expanded') === 'true';
+    button.setAttribute('aria-expanded', String(!isOpen));
+    button.setAttribute('aria-label', isOpen ? 'Buka menu' : 'Tutup menu');
+    menu?.classList.toggle('is-open', !isOpen);
+  });
+  menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+    button?.setAttribute('aria-expanded', 'false');
+    menu.classList.remove('is-open');
+  }));
+</script>
