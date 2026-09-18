@@ -9,6 +9,7 @@ import heroImage from '../assets/images/hero-asphalt.png';
 import parkingImage from '../assets/images/project-parking.png';
 import roadImage from '../assets/images/project-road.png';
 import detailImage from '../assets/images/project-detail.png';
+import logoImage from '../assets/images/indira-aspal.png';
 
 const projects = [
   { image: parkingImage, title: 'Pemadatan area parkir', category: 'Area Komersial', alt: 'Ilustrasi alat berat memadatkan aspal baru di area parkir' },
@@ -83,7 +84,7 @@ const projects = [
       <div class="container about-grid">
         <div class="about-visual">
           <Image src={detailImage} alt="Ilustrasi detail pengerjaan dan perataan aspal" widths={[360, 480, 768, 1000]} sizes="(max-width: 800px) calc(100vw - 2rem), 50vw" loading="lazy" />
-          <div class="about-stamp"><strong>IJA</strong><span>Aspal & Konstruksi Jalan</span></div>
+          <div class="about-stamp"><Image class="about-stamp__logo" src={logoImage} alt="" width={64} height={64} /><strong>{site.name}</strong><span>Spesialis Aspal Hotmix dan Jalan</span></div>
         </div>
         <div class="about-copy">
           <p class="eyebrow">Tentang Kami</p>
