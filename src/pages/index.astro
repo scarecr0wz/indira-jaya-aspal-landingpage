@@ -34,6 +34,14 @@ const serviceSlides = site.services.map((service, index) => ({
   image: serviceImages[index],
   alt: `${service.title} oleh Indira Jaya Aspal`,
 }));
+
+const serviceBenefits = [
+  'Harga per m² jelas & transparan',
+  'Material Hotmix Berkualitas (AC-WC, AC-BC)',
+  'Pekerjaan kuat, rapi, cepat & bergaransi',
+  'Gratis survei & pengukuran lokasi',
+  'Berpengalaman dan terpercaya',
+];
 ---
 
 <BaseLayout>
@@ -75,7 +83,7 @@ const serviceSlides = site.services.map((service, index) => ({
                     class:list={['service-slide', { 'is-active': index === 0 }]}
                     data-service-slide
                     aria-hidden={index === 0 ? 'false' : 'true'}
-                    aria-label={`${index + 1} dari ${serviceSlides.length}`}
+                    aria-label={service.title}
                     aria-roledescription="slide"
                   >
                     <Image
@@ -102,26 +110,16 @@ const serviceSlides = site.services.map((service, index) => ({
                 data-service-caption
                 aria-hidden={index === 0 ? 'false' : 'true'}
               >
-                <span>{service.number}</span>
                 <h3>{service.title}</h3>
               </div>
             ))}
           </div>
 
-          <div class="service-carousel__navigation">
-            <div class="service-carousel__dots" aria-label="Pilih layanan">
-              {serviceSlides.map((service, index) => (
-                <button
-                  class:list={['service-carousel__dot', { 'is-active': index === 0 }]}
-                  type="button"
-                  data-service-dot
-                  aria-label={`Tampilkan ${service.title}`}
-                  aria-current={index === 0 ? 'true' : undefined}
-                ></button>
-              ))}
-            </div>
-            <span class="service-carousel__counter"><strong data-service-current>01</strong> / 05</span>
-          </div>
+          <ul class="service-benefits">
+            {serviceBenefits.map((benefit) => (
+              <li><span aria-hidden="true">✓</span>{benefit}</li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
@@ -183,7 +181,7 @@ const serviceSlides = site.services.map((service, index) => ({
           {projects.map((project, index) => (
             <article class:list={['project-card', { 'project-card--wide': index === 0 }]}>
               <Image src={project.image} alt={project.alt} widths={[540, 800, 1200]} sizes={index === 0 ? '(max-width: 800px) 100vw, 60vw' : '(max-width: 800px) 100vw, 38vw'} loading="lazy" />
-              <div class="project-card__caption"><div><span>{project.category}</span><h3>{project.title}</h3></div><strong>0{index + 1}</strong></div>
+              <div class="project-card__caption"><div><span>{project.category}</span><h3>{project.title}</h3></div></div>
             </article>
           ))}
         </div>
@@ -213,8 +211,6 @@ const serviceSlides = site.services.map((service, index) => ({
   if (carousel) {
     const slides = Array.from(carousel.querySelectorAll<HTMLElement>('[data-service-slide]'));
     const captions = Array.from(carousel.querySelectorAll<HTMLElement>('[data-service-caption]'));
-    const dots = Array.from(carousel.querySelectorAll<HTMLButtonElement>('[data-service-dot]'));
-    const currentLabel = carousel.querySelector<HTMLElement>('[data-service-current]');
     const previousButton = carousel.querySelector<HTMLButtonElement>('[data-service-prev]');
     const nextButton = carousel.querySelector<HTMLButtonElement>('[data-service-next]');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -236,13 +232,6 @@ const serviceSlides = site.services.map((service, index) => ({
         caption.setAttribute('aria-hidden', String(!active));
       });
 
-      dots.forEach((dot, index) => {
-        const active = index === currentIndex;
-        dot.classList.toggle('is-active', active);
-        active ? dot.setAttribute('aria-current', 'true') : dot.removeAttribute('aria-current');
-      });
-
-      if (currentLabel) currentLabel.textContent = String(currentIndex + 1).padStart(2, '0');
     };
 
     const stopAutoplay = () => {
@@ -265,11 +254,6 @@ const serviceSlides = site.services.map((service, index) => ({
       showSlide(currentIndex + 1);
       startAutoplay();
     });
-    dots.forEach((dot, index) => dot.addEventListener('click', () => {
-      showSlide(index);
-      startAutoplay();
-    }));
-
     carousel.addEventListener('mouseenter', stopAutoplay);
     carousel.addEventListener('mouseleave', startAutoplay);
     carousel.addEventListener('focusin', stopAutoplay);
