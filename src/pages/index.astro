@@ -10,6 +10,11 @@ import parkingImage from '../assets/images/project-parking.png';
 import roadImage from '../assets/images/project-road.png';
 import detailImage from '../assets/images/project-detail.png';
 import logoImage from '../assets/images/indira-aspal.png';
+import serviceRoadImage from '../assets/images/service-road-v1.png';
+import serviceResidentialImage from '../assets/images/service-residential-v1.png';
+import serviceCommercialImage from '../assets/images/service-commercial-v1.png';
+import serviceIndustrialImage from '../assets/images/service-industrial-v1.png';
+import servicePavingImage from '../assets/images/service-paving-v1.png';
 
 const projects = [
   { image: parkingImage, title: 'Pemadatan area parkir', category: 'Area Komersial', alt: 'Ilustrasi alat berat memadatkan aspal baru di area parkir' },
@@ -17,7 +22,13 @@ const projects = [
   { image: detailImage, title: 'Finishing tepi jalan', category: 'Pekerjaan Detail', alt: 'Ilustrasi pekerja merapikan tepi permukaan aspal baru' },
 ];
 
-const serviceImages = [roadImage, heroImage, detailImage, parkingImage, roadImage];
+const serviceImages = [
+  serviceRoadImage,
+  serviceResidentialImage,
+  serviceCommercialImage,
+  serviceIndustrialImage,
+  servicePavingImage,
+];
 const serviceSlides = site.services.map((service, index) => ({
   ...service,
   image: serviceImages[index],
@@ -56,31 +67,45 @@ const serviceSlides = site.services.map((service, index) => ({
           <p>Kami membantu menyiapkan solusi pengerjaan sesuai kondisi area dan kebutuhan penggunaannya.</p>
         </div>
         <div class="service-carousel" data-service-carousel aria-roledescription="carousel" aria-label="Daftar layanan Indira Jaya Aspal">
-          <div class="service-carousel__viewport">
-            <div class="service-carousel__track">
-              {serviceSlides.map((service, index) => (
-                <article
-                  class:list={['service-slide', { 'is-active': index === 0 }]}
-                  data-service-slide
-                  aria-hidden={index === 0 ? 'false' : 'true'}
-                  aria-label={`${index + 1} dari ${serviceSlides.length}`}
-                  aria-roledescription="slide"
-                >
-                  <Image
-                    class="service-slide__image"
-                    src={service.image}
-                    alt={service.alt}
-                    widths={[640, 960, 1280, 1600]}
-                    sizes="(max-width: 800px) calc(100vw - 2rem), 1200px"
-                    loading={index === 0 ? 'eager' : 'lazy'}
-                  />
-                  <div class="service-slide__caption">
-                    <span>{service.number}</span>
-                    <h3>{service.title}</h3>
-                  </div>
-                </article>
-              ))}
+          <div class="service-carousel__frame">
+            <div class="service-carousel__viewport">
+              <div class="service-carousel__track">
+                {serviceSlides.map((service, index) => (
+                  <article
+                    class:list={['service-slide', { 'is-active': index === 0 }]}
+                    data-service-slide
+                    aria-hidden={index === 0 ? 'false' : 'true'}
+                    aria-label={`${index + 1} dari ${serviceSlides.length}`}
+                    aria-roledescription="slide"
+                  >
+                    <Image
+                      class="service-slide__image"
+                      src={service.image}
+                      alt={service.alt}
+                      widths={[640, 960, 1280, 1600]}
+                      sizes="(max-width: 800px) calc(100vw - 2rem), 1200px"
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                      quality={85}
+                    />
+                  </article>
+                ))}
+              </div>
             </div>
+            <button class="service-carousel__arrow service-carousel__arrow--prev" type="button" data-service-prev aria-label="Layanan sebelumnya">←</button>
+            <button class="service-carousel__arrow service-carousel__arrow--next" type="button" data-service-next aria-label="Layanan berikutnya">→</button>
+          </div>
+
+          <div class="service-carousel__captions">
+            {serviceSlides.map((service, index) => (
+              <div
+                class:list={['service-slide__caption', { 'is-active': index === 0 }]}
+                data-service-caption
+                aria-hidden={index === 0 ? 'false' : 'true'}
+              >
+                <span>{service.number}</span>
+                <h3>{service.title}</h3>
+              </div>
+            ))}
           </div>
 
           <div class="service-carousel__navigation">
@@ -95,11 +120,7 @@ const serviceSlides = site.services.map((service, index) => ({
                 ></button>
               ))}
             </div>
-            <div class="service-carousel__controls">
-              <span class="service-carousel__counter"><strong data-service-current>01</strong> / 05</span>
-              <button type="button" data-service-prev aria-label="Layanan sebelumnya">←</button>
-              <button type="button" data-service-next aria-label="Layanan berikutnya">→</button>
-            </div>
+            <span class="service-carousel__counter"><strong data-service-current>01</strong> / 05</span>
           </div>
         </div>
       </div>
@@ -196,6 +217,7 @@ const serviceSlides = site.services.map((service, index) => ({
 
   if (carousel) {
     const slides = Array.from(carousel.querySelectorAll<HTMLElement>('[data-service-slide]'));
+    const captions = Array.from(carousel.querySelectorAll<HTMLElement>('[data-service-caption]'));
     const dots = Array.from(carousel.querySelectorAll<HTMLButtonElement>('[data-service-dot]'));
     const currentLabel = carousel.querySelector<HTMLElement>('[data-service-current]');
     const previousButton = carousel.querySelector<HTMLButtonElement>('[data-service-prev]');
@@ -211,6 +233,12 @@ const serviceSlides = site.services.map((service, index) => ({
         const active = index === currentIndex;
         slide.classList.toggle('is-active', active);
         slide.setAttribute('aria-hidden', String(!active));
+      });
+
+      captions.forEach((caption, index) => {
+        const active = index === currentIndex;
+        caption.classList.toggle('is-active', active);
+        caption.setAttribute('aria-hidden', String(!active));
       });
 
       dots.forEach((dot, index) => {
