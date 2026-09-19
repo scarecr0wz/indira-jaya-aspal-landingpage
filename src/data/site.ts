@@ -13,24 +13,19 @@ export const site = {
     'Halo Indira Jaya Aspal, saya ingin berkonsultasi mengenai kebutuhan pengaspalan.',
   services: [
     {
-      title: 'Jasa Aspal Jalan',
-      description: 'Pengerjaan aspal untuk jalan lingkungan, jalan utama, dan berbagai kebutuhan akses.',
+      title: 'Pengaspalan Jalan Mulai dari 80.000/m²',
     },
     {
-      title: 'Jasa Aspal Perumahan & Kompleks',
-      description: 'Pengaspalan akses perumahan dan kompleks agar lebih rapi dan nyaman digunakan.',
+      title: 'Pengaspalan Kompleks dan Perumahan',
     },
     {
-      title: 'Jasa Aspal Area Komersial',
-      description: 'Pengerjaan area usaha dan komersial sesuai kondisi serta kebutuhan operasional.',
+      title: 'Pengaspalan Gudang, Pabrik & Area Parkir',
     },
     {
-      title: 'Jasa Aspal Gudang, Pabrik & Area Parkir',
-      description: 'Pengaspalan area gudang, pabrik, dan lahan parkir sesuai kebutuhan penggunaan.',
+      title: 'Pengaspalan Area Komersial',
     },
     {
-      title: 'Jasa Pasang Paving Block',
-      description: 'Pemasangan paving block untuk halaman, akses, dan area parkir yang rapi.',
+      title: 'Pemasangan Paving Blok',
     },
   ],
   specifications: [

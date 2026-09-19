@@ -10,11 +10,11 @@ import parkingImage from '../assets/images/project-parking.png';
 import roadImage from '../assets/images/project-road.png';
 import detailImage from '../assets/images/project-detail.png';
 import logoImage from '../assets/images/indira-aspal.png';
-import serviceRoadImage from '../assets/images/service-road-v1.png';
-import serviceResidentialImage from '../assets/images/service-residential-v1.png';
-import serviceCommercialImage from '../assets/images/service-commercial-v1.png';
-import serviceIndustrialImage from '../assets/images/service-industrial-v1.png';
-import servicePavingImage from '../assets/images/service-paving-v1.png';
+import serviceRoadImage from '../assets/images/services/jalan.jpeg';
+import serviceResidentialImage from '../assets/images/services/kompleks.jpeg';
+import serviceCommercialImage from '../assets/images/services/area-komersil.jpeg';
+import serviceIndustrialImage from '../assets/images/services/area-parkir.jpeg';
+import servicePavingImage from '../assets/images/services/paving.jpeg';
 
 const projects = [
   { image: parkingImage, title: 'Pemadatan area parkir', category: 'Area Komersial', alt: 'Ilustrasi alat berat memadatkan aspal baru di area parkir' },
@@ -23,19 +23,21 @@ const projects = [
 ];
 
 const serviceImages = [
-  serviceRoadImage,
-  serviceResidentialImage,
-  serviceCommercialImage,
-  serviceIndustrialImage,
-  servicePavingImage,
+  { image: serviceRoadImage, position: 'center 52%' },
+  { image: serviceResidentialImage, position: 'center 54%' },
+  { image: serviceIndustrialImage, position: 'center 48%' },
+  { image: serviceCommercialImage, position: 'center 52%' },
+  { image: servicePavingImage, position: 'center 58%' },
 ];
 const serviceSlides = site.services.map((service, index) => ({
   ...service,
-  image: serviceImages[index],
+  image: serviceImages[index].image,
+  imagePosition: serviceImages[index].position,
   alt: `${service.title} oleh Indira Jaya Aspal`,
 }));
 
 const serviceBenefits = [
+  'Aspal dari nol, pelapisan ulang & perbaikan',
   'Harga per m² jelas & transparan',
   'Material Hotmix Berkualitas (AC-WC, AC-BC)',
   'Pekerjaan kuat, rapi, cepat & bergaransi',
@@ -77,24 +79,36 @@ const serviceBenefits = [
         <div class="service-carousel" data-service-carousel aria-roledescription="carousel" aria-label="Daftar layanan Indira Jaya Aspal">
           <div class="service-carousel__frame">
             <div class="service-carousel__viewport">
-              <div class="service-carousel__track">
+              <div class="service-carousel__track" data-service-track>
                 {serviceSlides.map((service, index) => (
                   <article
-                    class:list={['service-slide', { 'is-active': index === 0 }]}
+                    class="service-slide"
                     data-service-slide
                     aria-hidden={index === 0 ? 'false' : 'true'}
                     aria-label={service.title}
                     aria-roledescription="slide"
                   >
-                    <Image
-                      class="service-slide__image"
-                      src={service.image}
-                      alt={service.alt}
-                      widths={[640, 960, 1280, 1600]}
-                      sizes="(max-width: 800px) calc(100vw - 2rem), 1200px"
-                      loading={index === 0 ? 'eager' : 'lazy'}
-                      quality={85}
-                    />
+                    <div class="service-slide__heading">
+                      <span>{String(index + 1).padStart(2, '0')}</span>
+                      <h3>{service.title}</h3>
+                    </div>
+                    <div class="service-slide__visual">
+                      <Image
+                        class="service-slide__image"
+                        src={service.image}
+                        alt={service.alt}
+                        widths={[640, 960, 1280, 1600]}
+                        sizes="(max-width: 800px) calc(100vw - 2rem), 1200px"
+                        loading={index === 0 ? 'eager' : 'lazy'}
+                        quality={85}
+                        style={`object-position: ${service.imagePosition}`}
+                      />
+                    </div>
+                    <ul class="service-benefits">
+                      {serviceBenefits.map((benefit) => (
+                        <li><span aria-hidden="true">✓</span>{benefit}</li>
+                      ))}
+                    </ul>
                   </article>
                 ))}
               </div>
@@ -103,23 +117,6 @@ const serviceBenefits = [
             <button class="service-carousel__arrow service-carousel__arrow--next" type="button" data-service-next aria-label="Layanan berikutnya">→</button>
           </div>
 
-          <div class="service-carousel__captions">
-            {serviceSlides.map((service, index) => (
-              <div
-                class:list={['service-slide__caption', { 'is-active': index === 0 }]}
-                data-service-caption
-                aria-hidden={index === 0 ? 'false' : 'true'}
-              >
-                <h3>{service.title}</h3>
-              </div>
-            ))}
-          </div>
-
-          <ul class="service-benefits">
-            {serviceBenefits.map((benefit) => (
-              <li><span aria-hidden="true">✓</span>{benefit}</li>
-            ))}
-          </ul>
         </div>
       </div>
     </section>
@@ -209,8 +206,8 @@ const serviceBenefits = [
   const carousel = document.querySelector<HTMLElement>('[data-service-carousel]');
 
   if (carousel) {
+    const track = carousel.querySelector<HTMLElement>('[data-service-track]');
     const slides = Array.from(carousel.querySelectorAll<HTMLElement>('[data-service-slide]'));
-    const captions = Array.from(carousel.querySelectorAll<HTMLElement>('[data-service-caption]'));
     const previousButton = carousel.querySelector<HTMLButtonElement>('[data-service-prev]');
     const nextButton = carousel.querySelector<HTMLButtonElement>('[data-service-next]');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -220,18 +217,12 @@ const serviceBenefits = [
     const showSlide = (nextIndex: number) => {
       currentIndex = (nextIndex + slides.length) % slides.length;
 
+      if (track) track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
       slides.forEach((slide, index) => {
         const active = index === currentIndex;
-        slide.classList.toggle('is-active', active);
         slide.setAttribute('aria-hidden', String(!active));
       });
-
-      captions.forEach((caption, index) => {
-        const active = index === currentIndex;
-        caption.classList.toggle('is-active', active);
-        caption.setAttribute('aria-hidden', String(!active));
-      });
-
     };
 
     const stopAutoplay = () => {
