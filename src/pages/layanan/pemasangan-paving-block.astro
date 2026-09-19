@@ -1,0 +1,44 @@
+---
+import ServiceDetailLayout from '../../layouts/ServiceDetailLayout.astro';
+import pavingImage from '../../assets/images/services/paving.jpeg';
+import pavingDetailImage from '../../assets/images/service-paving-v1.png';
+
+const gallery = [
+  { image: pavingImage, alt: 'Area dengan pemasangan paving block', caption: 'Pemasangan paving block' },
+  { image: pavingDetailImage, alt: 'Detail pekerjaan paving block', caption: 'Detail hasil pemasangan paving block' },
+];
+---
+
+<ServiceDetailLayout
+  title="Pemasangan Paving Block"
+  contentTitle="Paving Block untuk Berbagai Kebutuhan"
+  metaTitle="Jasa Pemasangan Paving Block | Indira Jaya Aspal"
+  description="Layanan pemasangan paving block dengan pilihan mutu beton yang dapat disesuaikan dengan kebutuhan area."
+  heroImage={pavingImage}
+  heroAlt="Pemasangan paving block oleh Indira Jaya Aspal"
+  gallery={gallery}
+>
+  <p>Jasa pemasangan paving block merupakan proses penataan blok-blok beton yang saling mengunci untuk memperkeras permukaan tanah sekaligus membantu menjaga resapan air. Tersedia beragam model, bentuk, dan warna paving block, mulai dari hexagon hingga balok persegi. Mutu beton juga dapat dipilih sesuai kebutuhan proyek Anda.</p>
+
+  <section class="service-content-group">
+    <h3>Keunggulan Paving Block</h3>
+    <div class="service-content-list">
+      <article>
+        <h4>Estetika Fleksibel</h4>
+        <p>Susunan blok dapat dibentuk menjadi berbagai pola artistik, seperti susun sirip ikan (herringbone), anyaman bata, atau catur, yang meningkatkan nilai visual area luar gedung, halaman rumah, dan jalan.</p>
+      </article>
+      <article>
+        <h4>Daya Tahan Tinggi</h4>
+        <p>Mampu menahan beban mulai dari pejalan kaki hingga kendaraan bermotor tanpa mudah retak, berkat sifat strukturnya yang fleksibel.</p>
+      </article>
+      <article>
+        <h4>Ramah Lingkungan</h4>
+        <p>Celah antarblok memungkinkan air hujan meresap kembali ke dalam tanah sehingga membantu mencegah genangan dan menjaga siklus air alami.</p>
+      </article>
+      <article>
+        <h4>Kemudahan Perawatan</h4>
+        <p>Jika terjadi kerusakan atau penurunan tanah pada titik tertentu, blok yang terdampak dapat diangkat dan diganti secara parsial tanpa harus merusak keseluruhan permukaan.</p>
+      </article>
+    </div>
+  </section>
+</ServiceDetailLayout>

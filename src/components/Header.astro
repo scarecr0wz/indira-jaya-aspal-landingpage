@@ -7,10 +7,16 @@ import { whatsappUrl } from '../data/site';
   <div class="container header-inner">
     <Logo light />
     <nav class="desktop-nav" aria-label="Navigasi utama">
-      <a href="#beranda">Beranda</a>
-      <a href="#layanan">Layanan</a>
-      <a href="#tentang">Tentang</a>
-      <a href="#proyek">Proyek</a>
+      <a href="/#beranda">Beranda</a>
+      <div class="nav-dropdown">
+        <a class="nav-dropdown__trigger" href="/#layanan">Layanan <span aria-hidden="true">⌄</span></a>
+        <div class="nav-dropdown__menu">
+          <a href="/layanan/pengaspalan-jalan/">Pengaspalan Jalan</a>
+          <a href="/layanan/pemasangan-paving-block/">Pemasangan Paving Block</a>
+        </div>
+      </div>
+      <a href="/#tentang">Tentang</a>
+      <a href="/#proyek">Proyek</a>
     </nav>
     <a class="button button--small header-cta" href={whatsappUrl} target="_blank" rel="noreferrer">Konsultasi Gratis</a>
     <button class="menu-button" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-button>
@@ -18,11 +24,15 @@ import { whatsappUrl } from '../data/site';
     </button>
   </div>
   <nav class="mobile-nav" id="mobile-menu" aria-label="Navigasi mobile" data-mobile-menu>
-    <a href="#beranda">Beranda</a>
-    <a href="#layanan">Layanan</a>
-    <a href="#tentang">Tentang</a>
-    <a href="#proyek">Proyek</a>
-    <a href="#kontak">Kontak</a>
+    <a href="/#beranda">Beranda</a>
+    <a href="/#layanan">Layanan</a>
+    <div class="mobile-nav__services">
+      <a href="/layanan/pengaspalan-jalan/">Pengaspalan Jalan</a>
+      <a href="/layanan/pemasangan-paving-block/">Pemasangan Paving Block</a>
+    </div>
+    <a href="/#tentang">Tentang</a>
+    <a href="/#proyek">Proyek</a>
+    <a href="/#kontak">Kontak</a>
   </nav>
 </header>
 

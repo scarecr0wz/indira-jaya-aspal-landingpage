@@ -15,6 +15,7 @@ import serviceResidentialImage from '../assets/images/services/kompleks.jpeg';
 import serviceCommercialImage from '../assets/images/services/area-komersil.jpeg';
 import serviceIndustrialImage from '../assets/images/services/area-parkir.jpeg';
 import servicePavingImage from '../assets/images/services/paving.jpeg';
+import mainVideo from '../assets/videos/main-video.mp4';
 
 const projects = [
   { image: parkingImage, title: 'Pemadatan area parkir', category: 'Area Komersial', alt: 'Ilustrasi alat berat memadatkan aspal baru di area parkir' },
@@ -63,12 +64,20 @@ const serviceBenefits = [
             <a class="text-link text-link--light" href="#layanan">Lihat layanan <span aria-hidden="true">↓</span></a>
           </div>
         </div>
-        <!-- Ganti blok ini dengan elemen <video> atau embed ketika aset video tersedia. -->
-        <div class="hero__video" aria-label="Placeholder video profil proyek">
-          <span class="hero__play" aria-hidden="true"></span>
-          <p>Video profil proyek</p>
-          <small>Placeholder video</small>
-        </div>
+        <video
+          class="hero__video"
+          src={mainVideo}
+          poster={heroImage.src}
+          aria-label="Video profil proyek Indira Jaya Aspal"
+          autoplay
+          muted
+          loop
+          playsinline
+          controls
+          preload="metadata"
+        >
+          Browser Anda tidak mendukung pemutaran video.
+        </video>
       </div>
     </section>
 
@@ -107,10 +116,25 @@ const serviceBenefits = [
                       />
                     </div>
                     <ul class="service-benefits">
-                      {serviceBenefits.map((benefit) => (
-                        <li><span aria-hidden="true">✓</span>{benefit}</li>
+                      {serviceBenefits.map((benefit, benefitIndex) => (
+                        <li>
+                          <span aria-hidden="true">✓</span>
+                          {service.title === 'Pemasangan Paving Blok' && benefitIndex === 0
+                            ? 'Bisa request mutu beton'
+                            : benefit}
+                        </li>
                       ))}
                     </ul>
+                    <div class="service-slide__footer">
+                      <a
+                        class="text-link"
+                        href={service.title === 'Pemasangan Paving Blok'
+                          ? '/layanan/pemasangan-paving-block/'
+                          : '/layanan/pengaspalan-jalan/'}
+                      >
+                        Klik untuk detail lebih lanjut <span aria-hidden="true">→</span>
+                      </a>
+                    </div>
                   </article>
                 ))}
               </div>
