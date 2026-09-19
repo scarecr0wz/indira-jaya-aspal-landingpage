@@ -14,23 +14,28 @@ export const site = {
   services: [
     {
       number: '01',
-      title: 'Pengaspalan Hotmix',
-      description: 'Pengerjaan lapisan aspal untuk jalan lingkungan, akses usaha, dan kawasan properti.',
+      title: 'Jasa Aspal Jalan',
+      description: 'Pengerjaan aspal untuk jalan lingkungan, jalan utama, dan berbagai kebutuhan akses.',
     },
     {
       number: '02',
-      title: 'Perbaikan Jalan',
-      description: 'Penanganan permukaan rusak dan pelapisan ulang agar akses kembali nyaman digunakan.',
+      title: 'Jasa Aspal Perumahan & Kompleks',
+      description: 'Pengaspalan akses perumahan dan kompleks agar lebih rapi dan nyaman digunakan.',
     },
     {
       number: '03',
-      title: 'Pemadatan Lahan',
-      description: 'Persiapan dan pemadatan permukaan sebagai fondasi pekerjaan yang lebih stabil.',
+      title: 'Jasa Aspal Area Komersial',
+      description: 'Pengerjaan area usaha dan komersial sesuai kondisi serta kebutuhan operasional.',
     },
     {
       number: '04',
-      title: 'Area Parkir & Halaman',
-      description: 'Pengaspalan area komersial, gudang, halaman, dan lahan parkir sesuai kebutuhan.',
+      title: 'Jasa Aspal Gudang, Pabrik & Area Parkir',
+      description: 'Pengaspalan area gudang, pabrik, dan lahan parkir sesuai kebutuhan penggunaan.',
+    },
+    {
+      number: '05',
+      title: 'Jasa Pasang Paving Block',
+      description: 'Pemasangan paving block untuk halaman, akses, dan area parkir yang rapi.',
     },
   ],
   specifications: [

@@ -16,9 +16,16 @@ const projects = [
   { image: roadImage, title: 'Pelapisan jalan lingkungan', category: 'Jalan Lingkungan', alt: 'Ilustrasi tim mengaspal jalan lingkungan dengan mesin paver' },
   { image: detailImage, title: 'Finishing tepi jalan', category: 'Pekerjaan Detail', alt: 'Ilustrasi pekerja merapikan tepi permukaan aspal baru' },
 ];
+
+const serviceImages = [roadImage, heroImage, detailImage, parkingImage, roadImage];
+const serviceSlides = site.services.map((service, index) => ({
+  ...service,
+  image: serviceImages[index],
+  alt: `${service.title} oleh Indira Jaya Aspal`,
+}));
 ---
 
-<BaseLayout image={heroImage.src}>
+<BaseLayout>
   <Header />
   <main id="main-content">
     <section class="hero" id="beranda">
@@ -48,16 +55,52 @@ const projects = [
           <div><p class="eyebrow">Layanan Kami</p><h2>Dari persiapan hingga<br />lapisan akhir.</h2></div>
           <p>Kami membantu menyiapkan solusi pengerjaan sesuai kondisi area dan kebutuhan penggunaannya.</p>
         </div>
-        <div class="service-grid">
-          {site.services.map((service) => (
-            <article class="service-item">
-              <span class="service-item__number">{service.number}</span>
-              <div>
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
-              </div>
-            </article>
-          ))}
+        <div class="service-carousel" data-service-carousel aria-roledescription="carousel" aria-label="Daftar layanan Indira Jaya Aspal">
+          <div class="service-carousel__viewport">
+            <div class="service-carousel__track">
+              {serviceSlides.map((service, index) => (
+                <article
+                  class:list={['service-slide', { 'is-active': index === 0 }]}
+                  data-service-slide
+                  aria-hidden={index === 0 ? 'false' : 'true'}
+                  aria-label={`${index + 1} dari ${serviceSlides.length}`}
+                  aria-roledescription="slide"
+                >
+                  <Image
+                    class="service-slide__image"
+                    src={service.image}
+                    alt={service.alt}
+                    widths={[640, 960, 1280, 1600]}
+                    sizes="(max-width: 800px) calc(100vw - 2rem), 1200px"
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                  />
+                  <div class="service-slide__caption">
+                    <span>{service.number}</span>
+                    <h3>{service.title}</h3>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div class="service-carousel__navigation">
+            <div class="service-carousel__dots" aria-label="Pilih layanan">
+              {serviceSlides.map((service, index) => (
+                <button
+                  class:list={['service-carousel__dot', { 'is-active': index === 0 }]}
+                  type="button"
+                  data-service-dot
+                  aria-label={`Tampilkan ${service.title}`}
+                  aria-current={index === 0 ? 'true' : undefined}
+                ></button>
+              ))}
+            </div>
+            <div class="service-carousel__controls">
+              <span class="service-carousel__counter"><strong data-service-current>01</strong> / 05</span>
+              <button type="button" data-service-prev aria-label="Layanan sebelumnya">←</button>
+              <button type="button" data-service-next aria-label="Layanan berikutnya">→</button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -147,3 +190,71 @@ const projects = [
   <Footer />
   <WhatsAppButton />
 </BaseLayout>
+
+<script>
+  const carousel = document.querySelector<HTMLElement>('[data-service-carousel]');
+
+  if (carousel) {
+    const slides = Array.from(carousel.querySelectorAll<HTMLElement>('[data-service-slide]'));
+    const dots = Array.from(carousel.querySelectorAll<HTMLButtonElement>('[data-service-dot]'));
+    const currentLabel = carousel.querySelector<HTMLElement>('[data-service-current]');
+    const previousButton = carousel.querySelector<HTMLButtonElement>('[data-service-prev]');
+    const nextButton = carousel.querySelector<HTMLButtonElement>('[data-service-next]');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let currentIndex = 0;
+    let autoplay: number | undefined;
+
+    const showSlide = (nextIndex: number) => {
+      currentIndex = (nextIndex + slides.length) % slides.length;
+
+      slides.forEach((slide, index) => {
+        const active = index === currentIndex;
+        slide.classList.toggle('is-active', active);
+        slide.setAttribute('aria-hidden', String(!active));
+      });
+
+      dots.forEach((dot, index) => {
+        const active = index === currentIndex;
+        dot.classList.toggle('is-active', active);
+        active ? dot.setAttribute('aria-current', 'true') : dot.removeAttribute('aria-current');
+      });
+
+      if (currentLabel) currentLabel.textContent = String(currentIndex + 1).padStart(2, '0');
+    };
+
+    const stopAutoplay = () => {
+      if (autoplay !== undefined) window.clearInterval(autoplay);
+      autoplay = undefined;
+    };
+
+    const startAutoplay = () => {
+      stopAutoplay();
+      if (!reduceMotion && !document.hidden) {
+        autoplay = window.setInterval(() => showSlide(currentIndex + 1), 5000);
+      }
+    };
+
+    previousButton?.addEventListener('click', () => {
+      showSlide(currentIndex - 1);
+      startAutoplay();
+    });
+    nextButton?.addEventListener('click', () => {
+      showSlide(currentIndex + 1);
+      startAutoplay();
+    });
+    dots.forEach((dot, index) => dot.addEventListener('click', () => {
+      showSlide(index);
+      startAutoplay();
+    }));
+
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', startAutoplay);
+    carousel.addEventListener('focusin', stopAutoplay);
+    carousel.addEventListener('focusout', (event) => {
+      if (!carousel.contains(event.relatedTarget as Node | null)) startAutoplay();
+    });
+    document.addEventListener('visibilitychange', () => document.hidden ? stopAutoplay() : startAutoplay());
+
+    startAutoplay();
+  }
+</script>
