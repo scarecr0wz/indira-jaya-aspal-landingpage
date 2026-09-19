@@ -56,7 +56,7 @@ button { color: inherit; }
 .hero__content { min-width: 0; }
 .hero h1 { max-width: 680px; font-size: clamp(3.1rem, 6vw, 5.8rem); }
 .hero h1 em, .cta-section h2 em { color: var(--red); font-style: normal; }
-.hero__lead { max-width: 570px; margin-top: 1.6rem; color: rgba(255,255,255,.75); font-size: clamp(1rem, 2vw, 1.18rem); }
+.hero__lead { max-width: 570px; margin-top: 1.6rem; color: rgba(255,255,255,.75); font-size: clamp(1rem, 2vw, 1.18rem); align-items: space-between; }
 .hero__actions { display: flex; align-items: center; gap: 2rem; margin-top: 2.25rem; }
 .hero__video { display: grid; aspect-ratio: 16 / 10; place-content: center; justify-items: center; border: 1px solid rgba(255,255,255,.35); color: white; background: rgba(18,19,21,.68); backdrop-filter: blur(6px); text-align: center; }
 .hero__video::before { content: ''; position: absolute; }
