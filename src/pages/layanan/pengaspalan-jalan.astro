@@ -1,0 +1,96 @@
+---
+import ServiceDetailLayout from '../../layouts/ServiceDetailLayout.astro';
+import roadImage from '../../assets/images/services/jalan.jpeg';
+import residentialImage from '../../assets/images/services/kompleks.jpeg';
+import industrialImage from '../../assets/images/services/area-parkir.jpeg';
+import commercialImage from '../../assets/images/services/area-komersil.jpeg';
+
+const gallery = [
+  { image: roadImage, alt: 'Pekerjaan pengaspalan jalan', caption: 'Pengaspalan jalan' },
+  { image: residentialImage, alt: 'Pekerjaan pengaspalan kompleks dan perumahan', caption: 'Kompleks dan perumahan' },
+  { image: industrialImage, alt: 'Pekerjaan pengaspalan area parkir dan industri', caption: 'Gudang, pabrik, dan area parkir' },
+  { image: commercialImage, alt: 'Pekerjaan pengaspalan area komersial', caption: 'Area komersial' },
+];
+---
+
+<ServiceDetailLayout
+  title="Pengaspalan Jalan"
+  contentTitle="Jasa Pengaspalan Profesional"
+  metaTitle="Jasa Pengaspalan Jalan | Indira Jaya Aspal"
+  description="Layanan pengaspalan untuk jalan, kompleks, perumahan, area industri, parkir, dan area komersial."
+  heroImage={roadImage}
+  heroAlt="Pekerjaan pengaspalan jalan oleh Indira Jaya Aspal"
+  gallery={gallery}
+>
+  <p>Jasa pengaspalan adalah layanan profesional yang menangani pembuatan, perbaikan, serta pemeliharaan jalan atau area tertentu menggunakan material aspal. Layanan ini umumnya dimanfaatkan untuk proyek jalan umum, area parkir, kompleks perumahan, halaman pabrik, hingga jalan setapak.</p>
+
+  <section class="service-content-group">
+    <h3>Jenis Layanan Pengaspalan</h3>
+    <div class="service-content-list">
+      <article>
+        <h4>Pengaspalan Baru (Jalan/Area Baru)</h4>
+        <p>Pembuatan lapisan aspal dari awal, mulai dari pembersihan lahan, pemadatan tanah dasar, pemasangan fondasi batu (agregat), hingga pelapisan aspal hotmix.</p>
+      </article>
+      <article>
+        <h4>Pelapisan Ulang (Overlay)</h4>
+        <p>Penambahan lapisan aspal baru di atas permukaan aspal lama yang sudah aus, tetapi struktur dasarnya masih kuat.</p>
+      </article>
+      <article>
+        <h4>Tambal Sulam (Patching)</h4>
+        <p>Perbaikan lokal untuk menutup lubang, retakan, atau bagian jalan yang rusak tanpa membongkar keseluruhan area.</p>
+      </article>
+      <article>
+        <h4>Perbaikan Struktur &amp; Fondasi</h4>
+        <p>Pembongkaran area yang rusak parah hingga ke lapisan fondasi bawah untuk diganti dan dipadatkan kembali sebelum dilapisi aspal baru.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="service-content-group">
+    <h3>Tahapan Umum Pekerjaan</h3>
+    <div class="service-content-list service-content-list--numbered">
+      <article>
+        <h4>Pemetaan &amp; Pembersihan Area</h4>
+        <p>Pengukuran luas area serta pembersihan dari sampah, lumpur, atau vegetasi.</p>
+      </article>
+      <article>
+        <h4>Pemadatan Lahan &amp; Fondasi</h4>
+        <p>Pengerasan tanah dan pengerjaan lapisan batu fondasi (sub-base dan base course) menggunakan mesin gilas (roller).</p>
+      </article>
+      <article>
+        <h4>Penyemprotan Perekat (Prime/Tack Coat)</h4>
+        <p>Pemberian cairan aspal sebagai perekat antara fondasi dan aspal hotmix.</p>
+      </article>
+      <article>
+        <h4>Penggelaran Hotmix &amp; Pemadatan Akhir</h4>
+        <p>Penghamparan material aspal panas sesuai ketebalan yang dirancang, dilanjutkan dengan pemadatan menggunakan tandem roller atau pneumatic tire roller.</p>
+      </article>
+      <article>
+        <h4>Finishing</h4>
+        <p>Pembersihan area dan pembuatan marka jalan jika diperlukan.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="service-content-group">
+    <h3>Jenis Material Aspal yang Sering Digunakan</h3>
+    <div class="service-content-list">
+      <article>
+        <h4>AC-WC (Asphalt Concrete – Wearing Course)</h4>
+        <p>Lapisan aus paling atas yang tahan terhadap beban lalu lintas dan cuaca.</p>
+      </article>
+      <article>
+        <h4>AC-BC (Asphalt Concrete – Binder Course)</h4>
+        <p>Lapisan antara yang berfungsi menyalurkan beban ke struktur di bawahnya.</p>
+      </article>
+      <article>
+        <h4>HRS (Hot Rolled Sheet)</h4>
+        <p>Lapisan tipis aspal pasir yang cocok untuk jalan dengan lalu lintas sedang hingga ringan.</p>
+      </article>
+      <article>
+        <h4>Asphalt Tack/Prime Coat</h4>
+        <p>Cairan perekat khusus yang digunakan di antara lapisan aspal.</p>
+      </article>
+    </div>
+  </section>
+</ServiceDetailLayout>

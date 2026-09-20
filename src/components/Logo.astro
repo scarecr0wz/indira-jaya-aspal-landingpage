@@ -9,7 +9,7 @@ interface Props {
 const { light = false } = Astro.props;
 ---
 
-<a class:list={['logo', { 'logo--light': light }]} href="#beranda" aria-label={site.name + ' — kembali ke beranda'}>
+<a class:list={['logo', { 'logo--light': light }]} href="/#beranda" aria-label={site.name + ' — kembali ke beranda'}>
   <span class="logo__mark" aria-hidden="true">
     <img src={logoImage.src} alt="" />
   </span>
