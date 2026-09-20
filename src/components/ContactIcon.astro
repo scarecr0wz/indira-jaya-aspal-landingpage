@@ -1,0 +1,6 @@
+---
+interface Props { name: 'whatsapp' | 'phone'; }
+const { name } = Astro.props;
+---
+{name === 'whatsapp' && <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="11" r="8"/><path d="m6 17-2 3 4-1M8 7c1 5 4 8 9 9"/></svg>}
+{name === 'phone' && <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 3-3 2c1 7 7 13 14 14l2-3-5-2-2 2c-3-1-5-3-6-6l2-2-2-5Z"/></svg>}

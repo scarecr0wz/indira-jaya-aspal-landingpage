@@ -4,8 +4,9 @@ export const site = {
   title: 'Jasa Pengaspalan Jalan Profesional | Indira Jaya Aspal',
   description:
     'Layanan pengaspalan hotmix untuk jalan lingkungan, area usaha, halaman, dan perbaikan permukaan. Konsultasikan kebutuhan lokasi Anda bersama Indira Jaya Aspal.',
-  phoneDisplay: '08xx-xxxx-xxxx',
-  phoneInternational: '6280000000000',
+  phoneDisplay: '0858-8542-2730',
+  phoneInternational: '6285885422730',
+  email: 'akiarrahman75@gmail.com',
   address: 'Alamat kantor akan diperbarui',
   serviceArea: 'Area layanan akan diperbarui',
   hours: 'Senin–Sabtu, 08.00–17.00',
@@ -65,3 +66,5 @@ export const site = {
 } as const;
 
 export const whatsappUrl = `https://wa.me/${site.phoneInternational}?text=${encodeURIComponent(site.whatsappMessage)}`;
+export const phoneUrl = `tel:+${site.phoneInternational}`;
+export const emailUrl = `mailto:${site.email}`;

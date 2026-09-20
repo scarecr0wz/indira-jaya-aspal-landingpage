@@ -1,6 +1,8 @@
 ---
 import Logo from './Logo.astro';
-import { whatsappUrl } from '../data/site';
+import ContactIcon from './ContactIcon.astro';
+import SocialIcon from './SocialIcon.astro';
+import { site, whatsappUrl, phoneUrl, emailUrl } from '../data/site';
 ---
 
 <header class="site-header" data-header>
@@ -18,11 +20,24 @@ import { whatsappUrl } from '../data/site';
     </button>
   </div>
   <nav class="mobile-nav" id="mobile-menu" aria-label="Navigasi mobile" data-mobile-menu>
-    <a href="#beranda">Beranda</a>
-    <a href="#layanan">Layanan</a>
-    <a href="#tentang">Tentang</a>
-    <a href="#proyek">Proyek</a>
-    <a href="#kontak">Kontak</a>
+    <div class="mobile-nav__links">
+      <a href="#beranda">Beranda</a>
+      <a href="#layanan">Layanan</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#proyek">Proyek</a>
+      <a href="#kontak">Kontak</a>
+    </div>
+    <div class="mobile-nav__contact">
+      <p>Hubungi Kami</p>
+      <a href={whatsappUrl} target="_blank" rel="noreferrer"><ContactIcon name="whatsapp" /><span><small>WhatsApp</small>{site.phoneDisplay}</span></a>
+      <a href={phoneUrl}><ContactIcon name="phone" /><span><small>Telepon</small>{site.phoneDisplay}</span></a>
+      <a class="contact-email" href={emailUrl}><span aria-hidden="true">@</span><span><small>Email</small>{site.email}</span></a>
+      <div class="mobile-nav__social" aria-label="Media sosial (segera hadir)">
+        <span class=social-icon role=img aria-label=Instagram title=Instagram><SocialIcon name=instagram /></span>
+        <span class=social-icon role=img aria-label=Facebook title=Facebook><SocialIcon name=facebook /></span>
+        <span class=social-icon role=img aria-label=TikTok title=TikTok><SocialIcon name=tiktok /></span>
+      </div>
+    </div>
   </nav>
 </header>
 

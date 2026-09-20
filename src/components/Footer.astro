@@ -1,6 +1,8 @@
 ---
 import Logo from './Logo.astro';
-import { site, whatsappUrl } from '../data/site';
+import ContactIcon from './ContactIcon.astro';
+import SocialIcon from './SocialIcon.astro';
+import { site, whatsappUrl, phoneUrl, emailUrl } from '../data/site';
 const year = new Date().getFullYear();
 ---
 
@@ -16,7 +18,17 @@ const year = new Date().getFullYear();
     </div>
     <div>
       <p class="footer-label">Hubungi Kami</p>
-      <div class="footer-links"><a href={whatsappUrl} target="_blank" rel="noreferrer">{site.phoneDisplay}</a><span>{site.address}</span><span>{site.hours}</span></div>
+      <div class="footer-links footer-contacts">
+        <a href={whatsappUrl} target="_blank" rel="noreferrer"><ContactIcon name="whatsapp" /><span><small>WhatsApp</small>{site.phoneDisplay}</span></a>
+        <a href={phoneUrl}><ContactIcon name="phone" /><span><small>Telepon</small>{site.phoneDisplay}</span></a>
+        <a class="contact-email" href={emailUrl}><span aria-hidden="true">@</span><span><small>Email</small>{site.email}</span></a>
+      </div>
+      <p class="footer-social-label">Ikuti Kami</p>
+      <div class="footer-social" aria-label="Media sosial (segera hadir)">
+        <span class=social-icon role=img aria-label=Instagram title=Instagram><SocialIcon name=instagram /></span>
+        <span class=social-icon role=img aria-label=Facebook title=Facebook><SocialIcon name=facebook /></span>
+        <span class=social-icon role=img aria-label=TikTok title=TikTok><SocialIcon name=tiktok /></span>
+      </div>
     </div>
   </div>
   <div class="container footer-bottom">

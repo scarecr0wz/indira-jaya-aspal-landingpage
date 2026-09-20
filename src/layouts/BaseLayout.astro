@@ -22,7 +22,8 @@ const schema = {
   name: site.name,
   url: canonical.href,
   description,
-  telephone: site.phoneInternational === '6280000000000' ? undefined : site.phoneDisplay,
+  telephone: `+${site.phoneInternational}`,
+  email: site.email,
   openingHours: 'Mo-Sa 08:00-17:00',
   areaServed: site.serviceArea === 'Area layanan akan diperbarui' ? undefined : site.serviceArea,
 };
