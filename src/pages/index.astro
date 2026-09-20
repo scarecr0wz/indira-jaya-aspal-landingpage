@@ -6,8 +6,6 @@ import Footer from '../components/Footer.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
 import { site, whatsappUrl } from '../data/site';
 import heroImage from '../assets/images/hero-asphalt.png';
-import parkingImage from '../assets/images/project-parking.png';
-import roadImage from '../assets/images/project-road.png';
 import detailImage from '../assets/images/project-detail.png';
 import logoImage from '../assets/images/indira-aspal.png';
 import serviceRoadImage from '../assets/images/services/jalan.jpeg';
@@ -16,12 +14,8 @@ import serviceCommercialImage from '../assets/images/services/area-komersil.jpeg
 import serviceIndustrialImage from '../assets/images/services/area-parkir.jpeg';
 import servicePavingImage from '../assets/images/services/paving.jpeg';
 import mainVideo from '../assets/videos/main-video.mp4';
+import { projects } from '../data/projects';
 
-const projects = [
-  { image: parkingImage, title: 'Pemadatan area parkir', category: 'Area Komersial', alt: 'Ilustrasi alat berat memadatkan aspal baru di area parkir' },
-  { image: roadImage, title: 'Pelapisan jalan lingkungan', category: 'Jalan Lingkungan', alt: 'Ilustrasi tim mengaspal jalan lingkungan dengan mesin paver' },
-  { image: detailImage, title: 'Finishing tepi jalan', category: 'Pekerjaan Detail', alt: 'Ilustrasi pekerja merapikan tepi permukaan aspal baru' },
-];
 
 const serviceImages = [
   { image: serviceRoadImage, position: 'center 52%' },
@@ -197,14 +191,16 @@ const serviceBenefits = [
     <section class="section projects" id="proyek">
       <div class="container">
         <div class="section-heading split-heading">
-          <div><h2>Dokumentasi Kami</h2></div>
+          <div><h2>Proyek yang Telah Kami Kerjakan</h2></div>
+          <p>Pilih proyek untuk melihat galeri dokumentasi pekerjaan.</p>
         </div>
-        <div class="project-grid">
+        <div class="project-list">
           {projects.map((project, index) => (
-            <article class:list={['project-card', { 'project-card--wide': index === 0 }]}>
-              <Image src={project.image} alt={project.alt} widths={[540, 800, 1200]} sizes={index === 0 ? '(max-width: 800px) 100vw, 60vw' : '(max-width: 800px) 100vw, 38vw'} loading="lazy" />
-              <div class="project-card__caption"><div><span>{project.category}</span><h3>{project.title}</h3></div></div>
-            </article>
+            <a class="project-list__item" href={`/proyek/${project.slug}/`}>
+              <span class="project-list__number">{String(index + 1).padStart(2, '0')}</span>
+              <h3>{project.title}</h3>
+              <span class="project-list__arrow" aria-hidden="true">→</span>
+            </a>
           ))}
         </div>
       </div>

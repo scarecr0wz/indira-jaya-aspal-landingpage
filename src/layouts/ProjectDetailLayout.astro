@@ -1,0 +1,81 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import { whatsappUrl } from '../data/site';
+
+interface GalleryImage {
+  image: ImageMetadata;
+  alt: string;
+  caption: string;
+}
+
+interface Props {
+  title: string;
+  location: string;
+  description: string;
+  heroImage: ImageMetadata;
+  gallery: GalleryImage[];
+  usesPlaceholder: boolean;
+}
+
+const { title, location, description, heroImage, gallery, usesPlaceholder } = Astro.props;
+---
+
+<BaseLayout title={`${title} | Proyek Indira Jaya Aspal`} description={description}>
+  <Header />
+  <main id="main-content">
+    <section class="service-detail-hero">
+      <Image class="service-detail-hero__image" src={heroImage} alt={`Dokumentasi proyek ${title}`} widths={[768, 1280, 1920]} sizes="100vw" loading="eager" fetchpriority="high" quality={85} />
+      <div class="service-detail-hero__veil"></div>
+      <div class="container service-detail-hero__content">
+        <a class="service-detail-hero__back" href="/#proyek">← Kembali ke Proyek</a>
+        <h1>{title}</h1>
+        <p>{description}</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container service-detail-intro">
+        <div><h2>Tentang Proyek</h2></div>
+        <div class="service-detail-copy">
+          <p>Proyek ini merupakan bagian dari portofolio pekerjaan Indira Jaya Aspal di {location}. Galeri berikut menampilkan dokumentasi proses hingga hasil pekerjaan di lokasi.</p>
+          {usesPlaceholder && <p class="project-placeholder-note">Foto yang tampil saat ini masih berupa template dan akan diperbarui dengan dokumentasi proyek.</p>}
+          <div class="service-detail-contact">
+            <p>Punya kebutuhan pekerjaan serupa? Konsultasikan lokasi dan kebutuhan proyek Anda bersama tim kami.</p>
+            <a class="button" href={whatsappUrl} target="_blank" rel="noreferrer">Hubungi Kami <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section service-gallery">
+      <div class="container">
+        <div class="service-gallery__heading"><h2>Galeri Proyek</h2></div>
+        <div class="service-gallery__grid">
+          {gallery.map((item) => (
+            <figure class="service-gallery__item">
+              <Image src={item.image} alt={item.alt} widths={[600, 900, 1200]} sizes="(max-width: 800px) 100vw, 50vw" loading="lazy" quality={85} />
+              <figcaption class="service-gallery__caption">{item.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" id="kontak">
+      <div class="container cta-grid">
+        <div><h2>Diskusikan kebutuhan<br /><em>lokasi Anda</em></h2></div>
+        <div class="cta-copy">
+          <p>Kirimkan informasi lokasi dan kebutuhan pekerjaan Anda. Kami akan membantu mengarahkan langkah selanjutnya.</p>
+          <a class="button button--light" href={whatsappUrl} target="_blank" rel="noreferrer">Chat WhatsApp Sekarang <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <WhatsAppButton />
+</BaseLayout>
