@@ -2,7 +2,7 @@
 import Logo from './Logo.astro';
 import ContactIcon from './ContactIcon.astro';
 import SocialIcon from './SocialIcon.astro';
-import { site, whatsappUrl, phoneUrl, emailUrl } from '../data/site';
+import { site, whatsappUrl, phoneUrl, emailUrl, facebookUrl } from '../data/site';
 const year = new Date().getFullYear();
 ---
 
@@ -24,9 +24,9 @@ const year = new Date().getFullYear();
         <a class="contact-email" href={emailUrl}><span aria-hidden="true">@</span><span><small>Email</small>{site.email}</span></a>
       </div>
       <p class="footer-social-label">Ikuti Kami</p>
-      <div class="footer-social" aria-label="Media sosial (segera hadir)">
+      <div class="footer-social" aria-label="Media sosial">
         <span class=social-icon role=img aria-label=Instagram title=Instagram><SocialIcon name=instagram /></span>
-        <span class=social-icon role=img aria-label=Facebook title=Facebook><SocialIcon name=facebook /></span>
+        <a class=social-icon href={facebookUrl} target="_blank" rel="noreferrer" aria-label=Facebook title=Facebook><SocialIcon name=facebook /></a>
         <span class=social-icon role=img aria-label=TikTok title=TikTok><SocialIcon name=tiktok /></span>
       </div>
     </div>

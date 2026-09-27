@@ -68,3 +68,4 @@ export const site = {
 export const whatsappUrl = `https://wa.me/${site.phoneInternational}?text=${encodeURIComponent(site.whatsappMessage)}`;
 export const phoneUrl = `tel:+${site.phoneInternational}`;
 export const emailUrl = `mailto:${site.email}`;
+export const facebookUrl = 'https://web.facebook.com/profile.php?id=61594310683458';

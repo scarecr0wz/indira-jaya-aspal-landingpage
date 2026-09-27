@@ -181,6 +181,7 @@ button { color: inherit; }
 .footer-social-label { margin: 1.7rem 0 .7rem; color: #686b70; font-size: .62rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .footer-social { display: flex; flex-wrap: wrap; gap: .6rem; }
 .social-icon { display: grid; width: 2.35rem; height: 2.35rem; place-items: center; border: 1px solid #2c2d30; color: #8e9195; cursor: default; }
+.social-icon[href] { cursor: pointer; }
 .social-icon svg { width: 1.15rem; height: 1.15rem; }
 .footer-bottom { display: flex; justify-content: space-between; padding-block: 1.35rem; border-top: 1px solid #2c2d30; color: #707277; font-size: .68rem; }
 .whatsapp-float { position: fixed; z-index: 30; right: 1.25rem; bottom: 1.25rem; display: flex; align-items: center; gap: .55rem; padding: .65rem .85rem; border-radius: 2rem; color: white; background: #1fa855; box-shadow: 0 12px 35px rgba(0,0,0,.22); font-size: .75rem; font-weight: 700; text-decoration: none; opacity: 0; transform: translateY(1rem); pointer-events: none; transition: opacity .25s, transform .25s; }
